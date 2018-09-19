@@ -14,18 +14,7 @@ import { RSSParsed } from 'rss-parser';
     <strong> Entries: </strong>
     <ul>
       <li *ngFor="let entry of rssParsed.feed.entries">
-        <p> <b>Title:</b> {{entry.title}}
-        <p> <b>Link:</b> {{entry.link}}
-        <p> <b>Published Date:</b> {{entry.pubDate}}
-        <p> <b>Creator:</b> {{entry.creator}}
-        <p> <b>Content:</b> {{entry.content}}
-        <p> <b>Content Snippet:</b> {{entry.contentSnippet}}
-        <p> <b>Guid:</b> {{entry.guid}}
-        <p> <b>Categories:</b>
-          <strong *ngFor="let category of categories">
-            {{category}}
-          </strong>
-        ISO Date: {{entry.isoDate}}
+        <p> <a href="{{entry.link}}">{{entry.title}}</a>
       </li>
     </ul>
   `
@@ -38,7 +27,9 @@ export class RSSFeedComponent implements OnInit {
   constructor(private rssParser: RSSParserService) { }
 
   ngOnInit() {
+    debugger;
     this.rssParser.parseURL(this.url).subscribe(rssParsed => {
+    debugger;
       this.rssParsed = rssParsed;
     });
 
